@@ -245,7 +245,7 @@ observeEvent(input$go_modification, {
 
 image <- reactive({
   # file path for image
-  file.path("./www", paste0(input$mymap_marker_click$id,".jpg"))
+  file.path("../www", paste0(input$mymap_marker_click$id,".jpg"))
 })
 
 #Save the number of like from the clicked point
