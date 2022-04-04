@@ -6,15 +6,15 @@ results <- reactiveValues()
 results$database.rds <- readRDS(file = "../www/database.rds")
 
 #build up path to password for windows
-credential_label <- "email_pwd"
-credential_path <- paste(Sys.getenv("USERPROFILE"), '\\DPAPI\\passwords\\', Sys.info()["nodename"], '\\', credential_label, '.txt', sep="")
+#credential_label <- "email_pwd"
+#credential_path <- paste(Sys.getenv("USERPROFILE"), '\\DPAPI\\passwords\\', Sys.info()["nodename"], '\\', credential_label, '.txt', sep="")
 
 # setup email sender
 results$smtp <- emayili::server(
                               host = "mail.gandi.net",
                               port = 465,
                               username = "contact@virginie-mournetas.fr",
-                              password = decrypt_dpapi_pw(credential_path) #keyring::key_get("MY_SECRET") for windows: 
+                              password = keyring::key_get("MY_SECRET") # for windows: decrypt_dpapi_pw(credential_path)
                             )
 
 # update leaflet map according to the database
